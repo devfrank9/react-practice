@@ -59,3 +59,37 @@
 18. html tag prop중 하나인 select에 state를 쓰고 선택시 나오는 change를 감지할수있다.
 19. jsx를 쓸때 자바스크립트 코드를 쓸때 return문안에 {}를 쓰면 안에 넣을수 있다.
 20. 19번의 예시로는 {index === "0" ? <MinutesToHours /> : null} 와 {index === "1" ? <KmToMiles /> : null} 과 같이 쓸수있다.
+
+## Props (세번째 섹션)
+
+1. 일종의 방식이다. 부모 컴포넌트로부터 자식 컴포넌트에 데이터를 보낼 수 있게 해주는 방법
+2. 컴포넌트는 단지 함수이고 그 안에 return안의 내용을 jsx내부 라고 한다.
+3. 무언가의 컴포넌트의 props를 전달할때 이름은 맘대로 지을수있다.
+   1. 주의점은 html태그에 placeholder="" 라는 식으로쓰면 단지 기본 html property이다.
+   2. 내가 만든 component에 placeholder="" 라고 적으면 이건 placeholder라는 props를 만들어 전달하는것이다.
+   3. 그러므로 컴포넌트에 props를 정의했으면 전달보내오는 함수에 props를 정의하고 보내줘야한다.
+4. props를 여러개 전달하면 object안에 여러개가 들어가는것을 확인할수 있다.
+   1. 위 방법으로 사용할때,
+   2. function({text,big}){return(<button style={{fontSize: big ? 18 : 16 }}></button>){text}}
+   3. 와 같이 사용할수 있다.
+5. 위의 3번의 자세한 예를 들자면,
+   1. onClick을 만약 커스텀한 컴포넌트안에 넣으면 더이상 eventlistner가 아닌, props이다.
+   2. 그러므로 이벤트리스너를 사용하려면 커스텀 컴포넌트안에 props를 넣어 eventlistner를 선언해야한다.
+   3. 위의 예를들면,
+   4. function({text,big,onClick}){return(<button onClick={onClick} style={{fontSize: big ? 18 : 16 }}></button>){text}}
+   5. 과 같이 써줘야한다.
+6. 위 와 같이 번거롭게 props를 전달하면 직접 넣게 하는 이유는 정확한 곳에 prop을 전달하기 위함이다.
+   1. 만약, 위의 button 태그 상위 태그로 div가 들어있으면 div전체가 onClick이벤트가 들어갈수있기 때문
+7. 부모 컴포넌트가 상태 변경을 겪고 상태가 변경되면, 부모 return안의 모든 컴포넌트가 새로고침된다.
+8. 만약 커스텀 컴포넌트가 두개가 있는데, 한개만 props를 받아 변경하고 다른것은 변경이 없을때,
+   1. 위 경우 나머지 하나는 새로고침이 필요없기 때문에 react memo를 사용한다.
+   2. const Memorized = React.memo(Btn(상위 커스텀 컴포넌트 이름))
+   3. 위의 hook을 사용하면 된다.
+9. 위의 메모를 쓰는 이유는 만약 컴포넌트 여러개를 항상 새로고침하면 앱이 느려질수 있기 때문에 쓴다.
+10. 보통 컴포넌트 한개를 여러 props를 넣어 사용하기 때문에 type을 적을때 에러를 유발할수 있다.
+11. 위의 에러를 방지하기 위해 props에 타입을 정해놓는다. (추후 타입스크립트 사용하는 방법과 같다)
+12. 사용법은,
+    1. (커스텀컴포넌트 이름).propTypes={text:PropTypes.string,fontSize:PropTypes.number}
+    2. 와 같이 사용한다.
+    3. props사용을 강제시키고 싶다면(한 커스텀 컴포넌트에 꼭 두가지를 쓰게끔)
+    4. (커스텀컴포넌트 이름).propTypes={text:PropTypes.string.isRequired,fontSize:PropTypes.number.isRequired}
