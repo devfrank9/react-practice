@@ -54,3 +54,8 @@
 15. 만약 두번째 value가 첫번째 value에 영향을 받는 경우
     1. value={flipped ? minutes : Math.round(minutes/60)} 이렇게 삼항연산자를 사용해서 boolean을 쓸수있다.
     2. 위의 3항 연산자는 flipped===true일때 minutes를 보이고, flipped=false일때는 뒤의 함수를 보여준다.
+16. 분할정복 - 위의 리액트 장점 중 하나인 모듈화를 통해 다른 components를 어떤 components안에 넣어서 렌더 시킬수 있다.
+17. 위의 Components를 갖고 state를 써서 두가지의 컴포넌트를 옵션으로 가진 선택 창을 만들수 있다.
+18. html tag prop중 하나인 select에 state를 쓰고 선택시 나오는 change를 감지할수있다.
+19. jsx를 쓸때 자바스크립트 코드를 쓸때 return문안에 {}를 쓰면 안에 넣을수 있다.
+20. 19번의 예시로는 {index === "0" ? <MinutesToHours /> : null} 와 {index === "1" ? <KmToMiles /> : null} 과 같이 쓸수있다.
